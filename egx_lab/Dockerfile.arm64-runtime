@@ -1,0 +1,27 @@
+# Apple Silicon runtime overlay for QuantMind.
+# Keeps upstream QuantMind source unchanged while adding the upstream-pinned
+# pyqlib 0.9.7 from source because PyPI has no ARM64 distribution.
+FROM quantmind-oss:arm64
+
+RUN git clone --depth 1 --branch v0.9.7 https://github.com/microsoft/qlib.git /tmp/qlib \
+    && cd /tmp/qlib \
+    && python -m pip wheel --no-deps . -w /tmp/qlib-wheel \
+    && python -m pip install --root-user-action=ignore --no-deps /tmp/qlib-wheel/*.whl \
+    && rm -rf /tmp/qlib /tmp/qlib-wheel
+
+COPY docker/patch_qlib.py /tmp/patch_qlib.py
+RUN python /tmp/patch_qlib.py && rm /tmp/patch_qlib.py \
+    && python -c "import platform, qlib; print('QuantMind ARM64 Qlib:', qlib.__version__, platform.machine())"
+
+# pyqlib's runtime dependencies omitted by the upstream ARM marker.
+# Pin the versions proven on this ARM64 runtime to keep rebuilds deterministic.
+RUN python -m pip install --root-user-action=ignore \
+      python-redis-lock==4.0.1 \
+      pymongo==4.18.3 \
+      gym==0.26.2 \
+      cvxpy==1.7.5 \
+      jupyter==1.1.1 \
+      nbconvert==7.17.1 \
+    && python -m pip check 2>&1 | tee /tmp/pip-check.log \
+    && ! grep -q 'pyqlib .*not installed' /tmp/pip-check.log \
+    && rm /tmp/pip-check.log

@@ -1,0 +1,12 @@
+# Native Apple Silicon runtime overlay for QuantMind app services.
+# The final image includes pyqlib 0.9.7 built natively from the upstream source tag.
+services:
+  quantmind:
+    image: quantmind-oss:arm64-qlib
+    platform: linux/arm64
+  celery-worker:
+    image: quantmind-oss:arm64-qlib
+    platform: linux/arm64
+  celery-beat:
+    image: quantmind-oss:arm64-qlib
+    platform: linux/arm64
