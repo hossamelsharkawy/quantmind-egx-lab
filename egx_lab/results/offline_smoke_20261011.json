@@ -1,0 +1,101 @@
+{
+  "status": "OFFLINE_RESEARCH_ONLY",
+  "data": "Thndr frozen 2026-10-07 snapshot",
+  "selection_asof": "2026-08-26",
+  "test_window": "2026-09-01..2026-10-06",
+  "universe": [
+    "COMI",
+    "PHDC",
+    "ORAS",
+    "FWRY",
+    "ORHD",
+    "ETEL",
+    "AMOC",
+    "EGAL",
+    "SWDY",
+    "MFPC",
+    "ARCC",
+    "MASR",
+    "EMFD",
+    "ADIB",
+    "MCQE",
+    "MTIE",
+    "JUFO",
+    "EXPA",
+    "TALM",
+    "EFID",
+    "ETRS",
+    "MPRC"
+  ],
+  "stocks": 22,
+  "rows": 520,
+  "test_sessions": 26,
+  "candidates": {
+    "as18": 367,
+    "as22": 1
+  },
+  "cost_bps_each_side": 20,
+  "slippage_included": false,
+  "quantmind_templates": [
+    "as18_trend_gate",
+    "as22_pullback_in_uptrend"
+  ],
+  "scope": "Template gates evaluated, not full QuantMind Redis TopK engine",
+  "warning": "PIT publication timestamps unverified; EGX T+0 eligibility unverified; no execution authority",
+  "results": [
+    {
+      "model": "mlp",
+      "template": "baseline",
+      "trades": 130,
+      "active_days": 26,
+      "winners": 45,
+      "win_rate_pct": 34.62,
+      "net_pct": -11.36
+    },
+    {
+      "model": "mlp",
+      "template": "QuantMind_as18_trend_gate",
+      "trades": 130,
+      "active_days": 26,
+      "winners": 45,
+      "win_rate_pct": 34.62,
+      "net_pct": -12.66
+    },
+    {
+      "model": "mlp",
+      "template": "QuantMind_as22_pullback",
+      "trades": 1,
+      "active_days": 1,
+      "winners": 0,
+      "win_rate_pct": 0.0,
+      "net_pct": -0.79
+    },
+    {
+      "model": "lgbm",
+      "template": "baseline",
+      "trades": 130,
+      "active_days": 26,
+      "winners": 36,
+      "win_rate_pct": 27.69,
+      "net_pct": -15.94
+    },
+    {
+      "model": "lgbm",
+      "template": "QuantMind_as18_trend_gate",
+      "trades": 130,
+      "active_days": 26,
+      "winners": 42,
+      "win_rate_pct": 32.31,
+      "net_pct": -15.43
+    },
+    {
+      "model": "lgbm",
+      "template": "QuantMind_as22_pullback",
+      "trades": 1,
+      "active_days": 1,
+      "winners": 0,
+      "win_rate_pct": 0.0,
+      "net_pct": -0.79
+    }
+  ]
+}
