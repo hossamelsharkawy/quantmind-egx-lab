@@ -1,0 +1,28 @@
+{
+  "source": "Thndr frozen daily snapshot exported from research_candles_daily_v2",
+  "source_dir": "/Users/ahmedalaslani/.local/share/qlib-11-models-20261011-20261007/snapshot/csv",
+  "output": "/Users/ahmedalaslani/work/quantmind-egx-lab/db/feature_snapshots/model_features_core.parquet",
+  "sha256": "76b9b279e0e2e10afaeb2423fabf9534675f948864b9269a7af035e05cda96c0",
+  "rows": 274274,
+  "symbols": 266,
+  "first_date": "2021-09-13",
+  "last_date": "2026-10-07",
+  "columns": [
+    "trade_date",
+    "symbol",
+    "open",
+    "high",
+    "low",
+    "close",
+    "volume",
+    "amount",
+    "is_st",
+    "mom_ret_1d",
+    "mom_ret_5d",
+    "mom_ret_20d",
+    "liq_volume",
+    "liq_amount"
+  ],
+  "known_missing_base_feature": "fun_turnover_1 intentionally omitted rather than fabricated",
+  "mode": "research-only read-only source; no broker or database writes"
+}

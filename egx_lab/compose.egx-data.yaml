@@ -1,0 +1,20 @@
+# EGX data binding only. Upstream QuantMind source remains unchanged.
+services:
+  quantmind:
+    environment:
+      - QLIB_PROVIDER_URI=/data/qlib/cn_data
+      - ENABLE_REAL_TRADING=false
+      - ENABLE_TDX_PUSH=false
+    volumes:
+      - /Users/ahmedalaslani/.local/share/qlib-11-models-20261011-20261007/qlib:/data/qlib/cn_data:ro
+  celery-worker:
+    environment:
+      - QLIB_PROVIDER_URI=/data/qlib/cn_data
+      - ENABLE_TDX_PUSH=false
+    volumes:
+      - /Users/ahmedalaslani/.local/share/qlib-11-models-20261011-20261007/qlib:/data/qlib/cn_data:ro
+  celery-beat:
+    environment:
+      - QLIB_PROVIDER_URI=/data/qlib/cn_data
+    volumes:
+      - /Users/ahmedalaslani/.local/share/qlib-11-models-20261011-20261007/qlib:/data/qlib/cn_data:ro
