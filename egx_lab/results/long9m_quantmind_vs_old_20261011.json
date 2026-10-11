@@ -1,0 +1,331 @@
+{
+  "status": "RESEARCH_DIAGNOSTIC_COMPLETE",
+  "date": "2026-10-11",
+  "purpose": "9-month apples-to-apples EGX comparison of QuantMind LightGBM pipeline vs prior Alpha158 LightGBM pipeline",
+  "split": {
+    "train_start": "2022-01-03",
+    "train_end": "2025-10-29",
+    "valid_start": "2025-11-03",
+    "valid_end": "2025-12-29",
+    "test_start": "2026-01-05",
+    "test_end": "2026-10-05"
+  },
+  "objective": "signal at session D close; predict next observed session D+1 open-to-close",
+  "training_universe": "full available EGX snapshot universe",
+  "comparison_universe_22": [
+    "COMI",
+    "PHDC",
+    "ORAS",
+    "FWRY",
+    "ORHD",
+    "ETEL",
+    "AMOC",
+    "EGAL",
+    "SWDY",
+    "MFPC",
+    "ARCC",
+    "MASR",
+    "EMFD",
+    "ADIB",
+    "MCQE",
+    "MTIE",
+    "JUFO",
+    "EXPA",
+    "TALM",
+    "EFID",
+    "ETRS",
+    "MPRC"
+  ],
+  "cost_bps_each_side": 20,
+  "slippage_bps_each_side": 0,
+  "quantmind": {
+    "selected_feature_count": 28,
+    "best_iteration": 216,
+    "test_metrics_native_rank_target": {
+      "train_ic": 0.052276046085295846,
+      "train_rank_ic": 0.05208963685639493,
+      "train_rank_icir": 0.585884500844186,
+      "val_ic": 0.02023469836214458,
+      "val_rank_ic": 0.021725934291901013,
+      "val_rank_icir": 0.3022600904043482,
+      "test_ic": 0.04249630489738538,
+      "test_rank_ic": 0.041874996650383293,
+      "test_rank_icir": 0.5109884804889121,
+      "score_direction": "normal"
+    },
+    "same_raw_openclose_metrics_recomputed": {
+      "ic": 0.015655079550227186,
+      "rank_ic": 0.04326126591732978,
+      "rank_icir": 0.5291102528579903,
+      "auc": 0.5136134580344832
+    },
+    "portfolio_22_intraday_topk": [
+      {
+        "top_k": 1,
+        "sessions": 180,
+        "active_days": 180,
+        "trades": 180,
+        "win_rate_pct": 38.88888888888889,
+        "net_compounded_pct": -31.289473674443503,
+        "mean_trade_net_pct": -0.18597985938065917,
+        "max_drawdown_pct": -46.920527356624994
+      },
+      {
+        "top_k": 3,
+        "sessions": 180,
+        "active_days": 180,
+        "trades": 540,
+        "win_rate_pct": 37.407407407407405,
+        "net_compounded_pct": -44.81741918063844,
+        "mean_trade_net_pct": -0.31919202130721763,
+        "max_drawdown_pct": -48.59432278066615
+      },
+      {
+        "top_k": 5,
+        "sessions": 180,
+        "active_days": 180,
+        "trades": 900,
+        "win_rate_pct": 37.44444444444445,
+        "net_compounded_pct": -48.854027664397094,
+        "mean_trade_net_pct": -0.36208818900801004,
+        "max_drawdown_pct": -51.09988079327235
+      }
+    ]
+  },
+  "old_alpha158_lightgbm": {
+    "feature_count": 158,
+    "test_metrics_all_market": {
+      "ic": 0.12459216314005582,
+      "rank_ic": 0.1343630597557279,
+      "rank_icir": 1.2228995561623026,
+      "auc": 0.5421358050311433
+    },
+    "portfolio_22_intraday_topk": [
+      {
+        "top_k": 1,
+        "sessions": 180,
+        "active_days": 180,
+        "trades": 180,
+        "win_rate_pct": 38.88888888888889,
+        "net_compounded_pct": -31.424485278160542,
+        "mean_trade_net_pct": -0.17888863552801,
+        "max_drawdown_pct": -43.996727664250265
+      },
+      {
+        "top_k": 3,
+        "sessions": 180,
+        "active_days": 180,
+        "trades": 540,
+        "win_rate_pct": 38.88888888888889,
+        "net_compounded_pct": -26.011092453201844,
+        "mean_trade_net_pct": -0.1499130503358797,
+        "max_drawdown_pct": -37.947720595002195
+      },
+      {
+        "top_k": 5,
+        "sessions": 180,
+        "active_days": 180,
+        "trades": 900,
+        "win_rate_pct": 37.0,
+        "net_compounded_pct": -42.88323681291579,
+        "mean_trade_net_pct": -0.30074177057313095,
+        "max_drawdown_pct": -49.2079716921734
+      }
+    ]
+  },
+  "executable_open_to_open_strategy_sweep_22": {
+    "period_signal": [
+      "2026-01-05",
+      "2026-10-05"
+    ],
+    "execution_open_window": [
+      "2026-01-06",
+      "2026-10-07"
+    ],
+    "fee_bps_each_side": 20,
+    "buy_hold_22_equal_weight_return_pct": 43.46,
+    "strategies": [
+      {
+        "model": "qm",
+        "k": 5,
+        "rebalance_every": 1,
+        "n_drop": null,
+        "holding_intervals": 180,
+        "rebalances": 180,
+        "trade_weight_changes": 997,
+        "avg_turnover_two_sided": 1.1078,
+        "net_return_pct": 13.78,
+        "max_drawdown_pct": -14.26,
+        "mean_open_to_open_gross_daily_pct": 0.306,
+        "avg_positions": 5.0
+      },
+      {
+        "model": "qm",
+        "k": 5,
+        "rebalance_every": 3,
+        "n_drop": null,
+        "holding_intervals": 180,
+        "rebalances": 60,
+        "trade_weight_changes": 387,
+        "avg_turnover_two_sided": 1.29,
+        "net_return_pct": 39.46,
+        "max_drawdown_pct": -15.21,
+        "mean_open_to_open_gross_daily_pct": 0.284,
+        "avg_positions": 5.0
+      },
+      {
+        "model": "qm",
+        "k": 5,
+        "rebalance_every": 5,
+        "n_drop": null,
+        "holding_intervals": 180,
+        "rebalances": 36,
+        "trade_weight_changes": 239,
+        "avg_turnover_two_sided": 1.3278,
+        "net_return_pct": 36.66,
+        "max_drawdown_pct": -13.23,
+        "mean_open_to_open_gross_daily_pct": 0.239,
+        "avg_positions": 5.0
+      },
+      {
+        "model": "qm",
+        "k": 5,
+        "rebalance_every": 10,
+        "n_drop": null,
+        "holding_intervals": 180,
+        "rebalances": 18,
+        "trade_weight_changes": 121,
+        "avg_turnover_two_sided": 1.3444,
+        "net_return_pct": 31.11,
+        "max_drawdown_pct": -12.82,
+        "mean_open_to_open_gross_daily_pct": 0.189,
+        "avg_positions": 5.0
+      },
+      {
+        "model": "qm",
+        "k": 5,
+        "rebalance_every": 1,
+        "n_drop": 1,
+        "holding_intervals": 180,
+        "rebalances": 180,
+        "trade_weight_changes": 359,
+        "avg_turnover_two_sided": 0.3989,
+        "net_return_pct": 33.38,
+        "max_drawdown_pct": -13.05,
+        "mean_open_to_open_gross_daily_pct": 0.252,
+        "avg_positions": 5.0
+      },
+      {
+        "model": "qm",
+        "k": 5,
+        "rebalance_every": 1,
+        "n_drop": 2,
+        "holding_intervals": 180,
+        "rebalances": 180,
+        "trade_weight_changes": 683,
+        "avg_turnover_two_sided": 0.7589,
+        "net_return_pct": 22.81,
+        "max_drawdown_pct": -12.83,
+        "mean_open_to_open_gross_daily_pct": 0.279,
+        "avg_positions": 5.0
+      },
+      {
+        "model": "old",
+        "k": 5,
+        "rebalance_every": 1,
+        "n_drop": null,
+        "holding_intervals": 180,
+        "rebalances": 180,
+        "trade_weight_changes": 1125,
+        "avg_turnover_two_sided": 1.25,
+        "net_return_pct": 21.74,
+        "max_drawdown_pct": -16.38,
+        "mean_open_to_open_gross_daily_pct": 0.373,
+        "avg_positions": 5.0
+      },
+      {
+        "model": "old",
+        "k": 5,
+        "rebalance_every": 3,
+        "n_drop": null,
+        "holding_intervals": 180,
+        "rebalances": 60,
+        "trade_weight_changes": 393,
+        "avg_turnover_two_sided": 1.31,
+        "net_return_pct": 37.77,
+        "max_drawdown_pct": -12.08,
+        "mean_open_to_open_gross_daily_pct": 0.278,
+        "avg_positions": 5.0
+      },
+      {
+        "model": "old",
+        "k": 5,
+        "rebalance_every": 5,
+        "n_drop": null,
+        "holding_intervals": 180,
+        "rebalances": 36,
+        "trade_weight_changes": 247,
+        "avg_turnover_two_sided": 1.3722,
+        "net_return_pct": 48.17,
+        "max_drawdown_pct": -11.53,
+        "mean_open_to_open_gross_daily_pct": 0.286,
+        "avg_positions": 5.0
+      },
+      {
+        "model": "old",
+        "k": 5,
+        "rebalance_every": 10,
+        "n_drop": null,
+        "holding_intervals": 180,
+        "rebalances": 18,
+        "trade_weight_changes": 133,
+        "avg_turnover_two_sided": 1.4778,
+        "net_return_pct": 40.48,
+        "max_drawdown_pct": -15.06,
+        "mean_open_to_open_gross_daily_pct": 0.23,
+        "avg_positions": 5.0
+      },
+      {
+        "model": "old",
+        "k": 5,
+        "rebalance_every": 1,
+        "n_drop": 1,
+        "holding_intervals": 180,
+        "rebalances": 180,
+        "trade_weight_changes": 361,
+        "avg_turnover_two_sided": 0.4011,
+        "net_return_pct": 52.37,
+        "max_drawdown_pct": -12.96,
+        "mean_open_to_open_gross_daily_pct": 0.328,
+        "avg_positions": 5.0
+      },
+      {
+        "model": "old",
+        "k": 5,
+        "rebalance_every": 1,
+        "n_drop": 2,
+        "holding_intervals": 180,
+        "rebalances": 180,
+        "trade_weight_changes": 701,
+        "avg_turnover_two_sided": 0.7789,
+        "net_return_pct": 48.28,
+        "max_drawdown_pct": -12.73,
+        "mean_open_to_open_gross_daily_pct": 0.389,
+        "avg_positions": 5.0
+      }
+    ],
+    "note": "Signals at D close execute at next observed market open; holdings are marked to following open. This avoids same-session exit/T+0 assumptions. Simplified research simulator, not exact Qlib order engine."
+  },
+  "key_findings": [
+    "Prior Alpha158 LightGBM has materially stronger 9M all-market Rank IC/ICIR than current QuantMind 28-feature LightGBM.",
+    "Daily same-session open-to-close round trips are not decision-grade unless T+0 eligibility is verified; both 22-stock Top-5 intraday variants lose after 20 bps per side.",
+    "When converted to next-open-to-next-open holding with turnover-aware costs, QuantMind performs best at 3-session rebalance (+39.46%) but trails equal-weight buy-and-hold of the same 22 names (+43.46%).",
+    "Prior model with TopK dropout-like n_drop=1 produces +52.37% in the simplified next-open simulator and beats the 22-name buy-and-hold benchmark, but requires exact Qlib engine validation before any trading conclusion."
+  ],
+  "limitations": [
+    "The 22-stock universe was selected using later-2026 screening, so January-August replay has universe-selection look-ahead and is diagnostic, not strict PIT.",
+    "Simplified open-to-open strategy sweep is not the exact QuantMind/Qlib order engine; it models next-open execution, equal weights, turnover costs and missing opens conservatively.",
+    "No slippage, taxes, market impact, broker restrictions or exchange-certified T+0/T+1 eligibility are included.",
+    "Current QuantMind feature adapter uses 48 requested features with IC/ICIR selection; it is not the full QuantDB 169+/429-factor production dataset."
+  ]
+}
