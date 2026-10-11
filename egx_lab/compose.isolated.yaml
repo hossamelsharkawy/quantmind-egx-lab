@@ -1,0 +1,41 @@
+# Additive, independent EGX research deployment; upstream docker-compose.yml unchanged.
+name: quantmind-egx-lab
+services:
+  db:
+    container_name: quantmind-egx-db
+    ports: !override
+      - '127.0.0.1:25432:5432'
+  redis:
+    container_name: quantmind-egx-redis
+    ports: !override
+      - '127.0.0.1:26379:6379'
+  quantmind:
+    container_name: quantmind-egx-core
+    ports: !override
+      - '127.0.0.1:28000:8000'
+      - '127.0.0.1:28001:8001'
+      - '127.0.0.1:28002:8002'
+      - '127.0.0.1:28003:8003'
+    environment:
+      ENABLE_REAL_TRADING: 'false'
+      ENABLE_TDX_PUSH: 'false'
+  celery-worker:
+    container_name: quantmind-egx-worker
+  celery-beat:
+    container_name: quantmind-egx-beat
+  data-gateway:
+    container_name: quantmind-egx-data-gateway
+    ports: !override
+      - '127.0.0.1:28004:8004'
+  huntly:
+    container_name: quantmind-egx-huntly
+    ports: !override
+      - '127.0.0.1:28090:80'
+  rsshub:
+    container_name: quantmind-egx-rsshub
+    ports: !override
+      - '127.0.0.1:21200:1200'
+  qwenpaw:
+    container_name: quantmind-egx-qwenpaw
+    ports: !override
+      - '127.0.0.1:28088:8088'
